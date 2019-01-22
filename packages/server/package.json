@@ -1,0 +1,21 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "ts-node-dev --inspect -- src/index.ts",
+        "build": "tsc -p tsconfig.build.json"
+    },
+    "dependencies": {
+        "@plumjs/plumier": "^1.0.0-alpha.1",
+        "@types/knex": "^0.15.1",
+        "@types/koa-logger": "^3.1.1",
+        "knex": "^0.16.3",
+        "koa-logger": "^3.2.0"
+    },
+    "devDependencies": {
+        "ts-node-dev": "^1.0.0-pre.32",
+        "typescript": "^3.2.4"
+    }
+}
