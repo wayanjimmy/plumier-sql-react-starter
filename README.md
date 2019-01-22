@@ -7,19 +7,25 @@ This starter project contains basic monorepo setup using yarn workspace.
 * VSCode (recommended)
 
 ## Installation
-* Download this repo extract to any directory you like
+* [Download](https://codeload.github.com/ktutnik/plumier-sql-react-starter/zip/master) this repo extract to any directory you like
 * Open VSCode then open the directory
 * Open VSCode integrated terminal
 * `$ yarn install` to install dependencies
 * `$ yarn start` to start the project
 
 # File Structure 
-Project consist of 2 packages: UI and Server. UI is a minimum react project created using [create-react-app](https://facebook.github.io/create-react-app/), it reside inside `packages/ui` directory. Server is Plumier project that run using [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) for development purposes, it reside inside `packages/server` directory.
+Project consist of 2 projects: UI and Server. Each project files placed inside `packages` directory.
 
 > If you want to rename the project directory name other than 'ui' and 'server' you should change the appropriate 
 > project scripts inside `scripts` directory.
 
-# Command
+## UI
+The UI project (`packages/ui`) is a minimal TypeScript react app created using  [create-react-app](https://facebook.github.io/create-react-app/), It will host its own web server `http://localhost:3000`. A proxy to the server side already configured in the `package.json` file.
+
+## Server
+The server project (`packages/server`) is a minimal Plumier project. It also host its own web server `http://localhost:8000`. You can run the server from the browser, but you need to build the project to move UI production build to the server static files. 
+
+# Commands
 The root package.json contains predefined scripts for convenient. Some command uses typescript code that stays on `scripts` directory and executed using `ts-node` 
 
 ## Start
@@ -54,18 +60,32 @@ To run the command simply
 # Debugging
 It is recommended to use VSCode to debug the project, You can use other editor/IDE, but this project provided VSCode `lunch.json` for convenion.
 
-Keep in mind debugging Server and UI can't be done in the same time, it uses different lunch configuration so 
-it can't debugged at the same time.
+Keep in mind debugging Server and UI uses different lunch configuration so it should debugged separately. 
 
-### Debugging UI
-Debugging UI require **Debugger for Chrome** extension. Go to VSCode extension and install. To start debugging ui simply:
-* `yarn start` if you not started the project yet.
-* Place break point on any `tsx` files you like
-* Go to VSCode Debug workbench on the debug dropdown select **Debug UI**
+## Debugging Prerequisites
+* Its recommended to use VS Code because lunch configuration already provided for convenient.
+* Install **Debugger for Chrome** VSCode Extension to debug UI
 
-### Debugging Server
-Debugging Server doesn't require you to install any extension. To start debugging simply:
-* `$ yarn start` if you not started the project yet
-* Place break point on any `ts` files you like
-* Go to VSCode Debug workbench on the debug dropdown select **Debug Server**
+## Debugging UI
+Debugging UI is done in steps below:
+* Start the project (if not started yet) by `$ yarn start` 
+* Place break point in any files `ts` or `tsx` you like 
+* From VSCode debug work bench dropdown select **Debug UI** and start debug by clicking the green play button.
+* The UI will be re-launch in a new google chrome window
+* Interact with the UI to reach the function you want to debug and use the debugger toolbar to step in, step over etc.
+* To stop debugging, click the red stop button from the debug toolbar. 
+  
+> Keep in mind, you only need to start the project once and start/stop debugger many time you like. Stopping debugger is only disconnect debugger with the process not killing it.
 
+## Debugging Server
+Debugging Server steps are the same as debugging UI. It done in steps below:
+* Make sure the project is started. 
+* Place break point in any `ts` files you like 
+* From VSCode debug work bench dropdown select **Debug Server** and start debug by clicking the green play button.
+* Interact with the UI to reach the function you want to debug and use the debugger toolbar to step in, step over etc.
+* To stop debugging, click the red stop button from the debug toolbar. 
+
+# Deployment
+Build command will build the UI and Server into optimized JavaScript files. 
+* `$ yarn build` to build the project
+* Project will be built into `build` directory
