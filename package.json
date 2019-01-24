@@ -6,7 +6,7 @@
         "packages/*"
     ],
     "scripts": {
-        "kill": "kill-port 8000 5000",
+        "kill": "kill-port 8000 3000",
         "clean": "ts-node scripts/cleanup.ts",
         "build:core": "yarn workspace core build",
         "build:ui": "yarn workspace ui build",
