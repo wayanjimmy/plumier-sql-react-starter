@@ -1,0 +1,18 @@
+{
+    "name": "core",
+    "version": "1.0.0",
+    "main": "src/index",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "postbuild": "ts-node scripts/postbuild.ts"
+    },
+    "dependencies": {
+        "@plumjs/core": "1.0.0-alpha.1",
+        "@plumjs/validator": "1.0.0-alpha.1"
+    },
+    "devDependencies": {
+        "ts-node": "^8.0.1",
+        "typescript": "^3.2.4"
+    }
+}

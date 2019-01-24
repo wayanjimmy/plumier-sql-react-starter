@@ -10,14 +10,16 @@ This starter project contains basic monorepo setup using yarn workspace.
 * [Download](https://codeload.github.com/ktutnik/plumier-sql-react-starter/zip/master) this repo extract to any directory you like
 * Open VSCode then open the directory
 * Open VSCode integrated terminal
-* `$ yarn install` to install dependencies
-* `$ yarn start` to start the project
+* `$ yarn install` 
+* `$ yarn start` 
 
 # File Structure 
-Project consist of 2 projects: UI and Server. Each project files placed inside `packages` directory.
-
+Project consist of 3 projects: Core, UI and Server. Each project files placed inside `packages` directory.
 > If you want to rename the project directory name other than 'ui' and 'server' you should change the appropriate 
 > project scripts inside `scripts` directory.
+
+## Core 
+The Core project (`packages/core`) contains shareable objects/function that can be used on Server and UI. This project should only dependent to pure JavaScript package (non server/ui related package)
 
 ## UI
 The UI project (`packages/ui`) is a minimal TypeScript react app created using  [create-react-app](https://facebook.github.io/create-react-app/), It will host its own web server `http://localhost:3000`. A proxy to the server side already configured in the `package.json` file.
@@ -33,29 +35,46 @@ This command used to start both UI and Server. Server will be ran in debug mode 
 
 To run the command simply 
 
-`$ yarn start` 
-
+```bash
+$ yarn start
+```
 
 ## Clean
 This command used to clean the project, it will clean the build directory and all generated JS file if any. The logic stays on `scripts/cleanup.ts` 
 
 To run the command simply 
 
-`$ yarn clean` 
+```bash
+$ yarn clean
+```
 
 ## Kill 
 This command used to kill the port used by UI and Server. This command useful when the port is locked by previous ran that was not closed. 
 
 To run the command simply 
 
-`$ yarn kill` 
+```bash
+$ yarn kill
+```
 
 ## Build
 This command used to make a deployment build. The code will be build on the root folder named `build`.  Refer to [Deployment](#deployment) for more information
 
 To run the command simply 
 
-`$ yarn build` 
+```bash
+$ yarn build
+```
+
+## Run Project Specific Command
+To run project specific command you can use [workspace](https://yarnpkg.com/lang/en/docs/cli/workspace/) command, such as:
+
+```bash
+# install package to specific project
+$ yarn workspace <project name> add <package name>
+# execute project specific script
+$ yarn workspace <project name> <script name>
+```
 
 # Debugging
 It is recommended to use VSCode to debug the project, You can use other editor/IDE, but this project provided VSCode `lunch.json` for convenion.
@@ -63,8 +82,8 @@ It is recommended to use VSCode to debug the project, You can use other editor/I
 Keep in mind debugging Server and UI uses different lunch configuration so it should debugged separately. 
 
 ## Debugging Prerequisites
-* Its recommended to use VS Code because lunch configuration already provided for convenient.
-* Install **Debugger for Chrome** VSCode Extension to debug UI
+* VSCode
+* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) Extension to debug UI
 
 ## Debugging UI
 Debugging UI is done in steps below:

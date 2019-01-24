@@ -5,16 +5,25 @@
     "license": "MIT",
     "scripts": {
         "start": "ts-node-dev --inspect -- src/index.ts",
-        "build": "tsc -p tsconfig.build.json"
+        "prebuild": "ts-node scripts/prebuild.ts",
+        "postbuild": "ts-node scripts/postbuild.ts",
+        "build": "tsc -p tsconfig.build.json",
+        "migrate:latest": "knex migrate:latest --knexfile knexfile.ts",
+        "migrate:rollback": "knex migrate:rollback --knexfile knexfile.ts"
     },
     "dependencies": {
-        "@plumjs/plumier": "^1.0.0-alpha.1",
+        "@plumjs/plumier": "1.0.0-alpha.1",
         "@types/knex": "^0.15.1",
         "@types/koa-logger": "^3.1.1",
+        "@types/yaml": "^1.0.1",
+        "core": "^1.0.0",
         "knex": "^0.16.3",
-        "koa-logger": "^3.2.0"
+        "koa-logger": "^3.2.0",
+        "mysql2": "^1.6.4",
+        "yaml": "^1.2.1"
     },
     "devDependencies": {
+        "ts-node": "^8.0.1",
         "ts-node-dev": "^1.0.0-pre.32",
         "typescript": "^3.2.4"
     }
