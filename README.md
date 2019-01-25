@@ -106,5 +106,7 @@ Debugging Server steps are the same as debugging UI. It done in steps below:
 
 # Deployment
 Build command will build the UI and Server into optimized JavaScript files. 
-* `$ yarn build` to build the project
-* Project will be built into `build` directory
+* `$ yarn build` to build the project.
+* Project will be built into `build` directory.
+* Start script provided on root package.json which call server start script.
+* To start project simply `yarn start` or `npm start` but Yarn must be installed
