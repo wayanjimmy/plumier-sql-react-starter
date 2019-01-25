@@ -1,29 +1,78 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
 
-class App extends Component {
+import axios from "axios"
+import { Todo } from "core"
+import React, { useEffect, useState } from "react"
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+function App() {
+  const [todoList, setTodoList] = useState<Todo[]>([])
+  const [title, setTitle] = useState("")
+  const refresh = () => {
+    axios.get<Todo[]>("/api/todo/all")
+      .then(x => {
+        if (x.status === 200) {
+          setTodoList(x.data)
+        }
+      })
+      .catch(x => console.error(x))
   }
+  const saveTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      axios.post("/api/todo", { title })
+        .then(x => {
+          refresh()
+          setTitle("")
+        })
+        .catch(x => console.error(x))
+    }
+  }
+  const deleteTodo = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const id = e.currentTarget.dataset.id
+    if (!confirm("Are you sure?")) return
+    axios.delete(`/api/todo/${id}`)
+      .then(() => refresh())
+      .catch(x => console.error(x))
+  }
+  const checkTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = e.currentTarget.dataset.id
+    console.log(e.currentTarget.checked)
+    axios.put(`/api/todo/${id}`, { completed: e.currentTarget.checked })
+      .then(() => refresh())
+      .catch(x => console.error(x))
+  }
+
+  useEffect(() => {
+    refresh()
+  }, [])
+
+  return (
+    <div className="container">
+      <table>
+        <thead>
+          <tr>
+            <td colSpan={3}>
+              <input type="text" className="add-todo" placeholder="Something to do? type here..."
+                onChange={x => setTitle(x.currentTarget.value)}
+                onKeyUp={saveTodo} value={title} />
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            todoList.map(x => <tr key={x.id}>
+              <td className="check">
+                <input checked={x.completed} onChange={checkTodo} data-id={x.id} type="checkbox" />
+              </td>
+              <td className={x.completed ? "completed" : ""}>{x.title}</td>
+              <td className="delete">
+                <a data-id={x.id} href="javascript:void(0)" onClick={deleteTodo}>Delete</a>
+              </td>
+            </tr>)
+          }
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default App;
