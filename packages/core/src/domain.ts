@@ -23,3 +23,14 @@ export class DomainBase {
         public deleted = false
     ) { }
 }
+
+
+@domain()
+export class Todo extends DomainBase {
+    constructor(
+        @val.length({ max: 256 })
+        public title: string,
+        @val.optional()
+        public completed: boolean
+    ) { super() }
+}
