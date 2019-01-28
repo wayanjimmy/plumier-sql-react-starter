@@ -28,9 +28,9 @@ export class DomainBase {
 @domain()
 export class Todo extends DomainBase {
     constructor(
-        @val.length({ max: 256 })
+        @val.length({ max: 64 })
         public title: string,
         @val.optional()
-        public completed: boolean
+        public completed?: boolean
     ) { super() }
 }

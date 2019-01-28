@@ -1,13 +1,20 @@
+import { route } from "@plumjs/core"
+import { val } from "@plumjs/plumier"
 import { Todo } from "core"
-import { route } from "@plumjs/core";
-import { Repository } from "../../repository/generic-repository";
-import reflect from "tinspector"
+
+import { Repository } from "../../repository/generic-repository"
 
 export class TodoController {
-    repo = new Repository<Todo>("todo")
+    private readonly repo = new Repository<Todo>("Todo")
 
-    all() {
-        return this.repo.find({ deleted: false }, 0, 100)
+    @route.get("")
+    all(@val.optional() offset = 0, @val.optional() limit = 50) {
+        return this.repo.find({ deleted: false }, offset, limit)
+    }
+
+    @route.get(":id")
+    get(id: number) {
+        return this.repo.findById(id)
     }
 
     @route.post("")
@@ -16,7 +23,7 @@ export class TodoController {
     }
 
     @route.put(":id")
-    update(id: number, @reflect.type(Todo) data: Partial<Todo>) {
+    update(id: number, @val.partial(Todo) data: Partial<Todo>) {
         return this.repo.update(id, data)
     }
 

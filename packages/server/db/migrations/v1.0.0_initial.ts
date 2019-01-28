@@ -14,7 +14,7 @@ export async function up(knex: Knex): Promise<any> {
     return knex.schema
         .createTable("Todo", t => {
             baseTable(t, knex)
-            t.string("title", 256)
+            t.string("title", 64)
             t.boolean("completed").defaultTo(false)
         })
 };

@@ -8,7 +8,7 @@ function App() {
   const [todoList, setTodoList] = useState<Todo[]>([])
   const [title, setTitle] = useState("")
   const refresh = () => {
-    axios.get<Todo[]>("/api/todo/all")
+    axios.get<Todo[]>("/api/todo")
       .then(x => {
         if (x.status === 200) {
           setTodoList(x.data)
@@ -35,7 +35,6 @@ function App() {
   }
   const checkTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.currentTarget.dataset.id
-    console.log(e.currentTarget.checked)
     axios.put(`/api/todo/${id}`, { completed: e.currentTarget.checked })
       .then(() => refresh())
       .catch(x => console.error(x))
