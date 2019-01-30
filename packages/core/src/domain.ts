@@ -16,10 +16,10 @@ import reflect from "tinspector"
 export class DomainBase {
     constructor(
         @val.optional()
-        public id = 0,
+        public id:number = 0,
         @val.optional()
-        public createdAt = new Date(),
+        public createdAt:Date = new Date(),
         @val.optional()
-        public deleted = false
+        public deleted:boolean = false
     ) { }
 }
