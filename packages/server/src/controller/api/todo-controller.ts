@@ -8,7 +8,7 @@ export class TodoController {
     private readonly repo = new Repository<Todo>("Todo")
 
     @route.get("")
-    all(@val.optional() offset = 0, @val.optional() limit = 50) {
+    all(@val.optional() offset:number = 0, @val.optional() limit:number = 50) {
         return this.repo.find({ deleted: false }, offset, limit)
     }
 
