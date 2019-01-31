@@ -16,11 +16,11 @@ import reflect from "tinspector"
 export class DomainBase {
     constructor(
         @val.optional()
-        public id:number = 0,
+        public id: number = 0,
         @val.optional()
-        public createdAt:Date = new Date(),
+        public createdAt: Date = new Date(),
         @val.optional()
-        public deleted:boolean = false
+        public deleted: boolean = false
     ) { }
 }
 
@@ -33,4 +33,27 @@ export class Todo extends DomainBase {
         @val.optional()
         public completed?: boolean
     ) { super() }
+}
+
+export type UserRole = "SuperAdmin" | "Admin" | "User";
+
+@domain()
+export class User extends DomainBase {
+    constructor(
+        @val.email()
+        email: string,
+        @val.length({ max: 64 })
+        displayName: string,
+        password: string,
+        provider: "Local" | "Facebook" | "Google",
+        role: UserRole
+    ) { super() }
+}
+
+@domain()
+export class UserClaim {
+    constructor(
+        userId: string,
+        role: UserRole
+    ) { }
 }
