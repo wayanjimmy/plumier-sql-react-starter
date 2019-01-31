@@ -1,4 +1,1 @@
-
-
-# example : dbUri: "mysql://root:unique123@localhost/cool_db"
-dbUri: "mysql://<user>:<password>@<server>/<db>"
+dbUri: "postgres://postgres:secret@localhost:5432/plum_auth"

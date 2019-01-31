@@ -2,7 +2,7 @@ import { Config } from "knex"
 import { config } from "./src/config";
 
 const development: Config = {
-    client: 'mysql2',
+    client: 'pg',
     connection: config.dbUri,
     pool: {
         min: 2,
