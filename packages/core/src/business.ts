@@ -1,6 +1,6 @@
 import { val } from "@plumjs/validator";
 
-export function unique() {
-    return val.custom("val:unique")
+export function uniqueEmail() {
+    return val.custom("val:unique-email")
 }
 

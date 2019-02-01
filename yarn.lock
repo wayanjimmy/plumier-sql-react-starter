@@ -900,33 +900,33 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@plumjs/core@1.0.0-alpha.4", "@plumjs/core@^1.0.0-alpha.4":
-  version "1.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@plumjs/core/-/core-1.0.0-alpha.4.tgz#1ead4e3053b633fe7591984a7cf42dbfed7f2448"
-  integrity sha512-MmAtTZRondwXnTew15bp56OHZGR0ILYi9gA8t8WFYFvahblqWeW9I/0Z0bRrcaDwd8n06/0d0uhSeEifPJZPmw==
+"@plumjs/core@1.0.0-alpha.5", "@plumjs/core@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@plumjs/core/-/core-1.0.0-alpha.5.tgz#9c8d3d7fa10a35a8c2a1196184b388dc58c70944"
+  integrity sha512-IycLgsRVey7i9cm7PcmNmAshfQ7utaznjrZ/C5ltHDkflFiQ0CktBfTO0bhtBqJqn/bmeorzpUbZD0RAsKm3yg==
   dependencies:
     "@types/koa" "^2.0.48"
     tinspector "^2.1.1"
     tslib "^1.9.3"
 
-"@plumjs/jwt@^1.0.0-alpha.4":
-  version "1.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@plumjs/jwt/-/jwt-1.0.0-alpha.4.tgz#844132257daf538eda7a21ec8d80da38107fc0a2"
-  integrity sha512-6b/rep4GLTMNBAl9kP8UqsTdRAtCKlXqkAsI+//85wnFHeUBWHXRgJONI1fGRvsmVVw6PXQ0xycS6CGzjSi62g==
+"@plumjs/jwt@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@plumjs/jwt/-/jwt-1.0.0-alpha.5.tgz#2384608c4d6cd3b6301cca041f38e23bb6a9da53"
+  integrity sha512-8iZOq59agyOh58fUJiNLecZAmxIKKkMRbqPT6kBZwDjboU00t+XJjSM9ubOumERZQUBsUbjYZ6Yt06psL/Qi1A==
   dependencies:
-    "@plumjs/core" "^1.0.0-alpha.4"
+    "@plumjs/core" "^1.0.0-alpha.5"
     koa-jwt "^3.5.1"
     tslib "^1.9.3"
 
-"@plumjs/plumier@1.0.0-alpha.4":
-  version "1.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@plumjs/plumier/-/plumier-1.0.0-alpha.4.tgz#2ade8e943c7b262cfcdbb72d728f61047c2699d8"
-  integrity sha512-hD6QX/ky5D+spAeLb+DUANaxeZQOTG7PrWeKwLmAUUxlAsIqXcdEZxU9yZlTQKpQ4XeEpKedGRTGQ06PKW5JFg==
+"@plumjs/plumier@1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@plumjs/plumier/-/plumier-1.0.0-alpha.5.tgz#d48aac9aa1d13e32f4d493abd16a3b21b4ad045a"
+  integrity sha512-7ZafTZfbGDOEgKn4pCM418InXSvbTdbf4e3sHV4fDbaSaDRsX05vIO8KqUVigmIj5mgaoxEqjd7dcGID+7eiRA==
   dependencies:
     "@koa/cors" "^2.2.3"
-    "@plumjs/core" "^1.0.0-alpha.4"
-    "@plumjs/jwt" "^1.0.0-alpha.4"
-    "@plumjs/validator" "^1.0.0-alpha.4"
+    "@plumjs/core" "^1.0.0-alpha.5"
+    "@plumjs/jwt" "^1.0.0-alpha.5"
+    "@plumjs/validator" "^1.0.0-alpha.5"
     "@types/busboy" "^0.2.3"
     "@types/glob" "^7.1.1"
     "@types/koa" "^2.0.48"
@@ -943,12 +943,12 @@
     tinspector "^2.1.1"
     tslib "^1.9.3"
 
-"@plumjs/validator@1.0.0-alpha.4", "@plumjs/validator@^1.0.0-alpha.4":
-  version "1.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@plumjs/validator/-/validator-1.0.0-alpha.4.tgz#c7ede4c5b058e49d3bf0bc9eadb0f0a79ad515c8"
-  integrity sha512-E1OxWIy1hFfkZNIsuHysL+UTJx54St8HOV5pLVq2Do9m9wbPot8HtovXgRm9AN7A3IH8l2JVZOGDvnj7xM2ZIA==
+"@plumjs/validator@1.0.0-alpha.5", "@plumjs/validator@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@plumjs/validator/-/validator-1.0.0-alpha.5.tgz#2ac3e522a5de3c3af9eb99b9f7ce5be92de5254e"
+  integrity sha512-BpOzh7i06QaYmMvf7JM5i6OtxBMNzM429xyD41vtWqwzgQ7UI4AzOFoDWN67TptOShcmD5tzg/G/QH9nWjpVJA==
   dependencies:
-    "@plumjs/core" "^1.0.0-alpha.4"
+    "@plumjs/core" "^1.0.0-alpha.5"
     "@types/validator" "^10.9.0"
     tinspector "^2.1.1"
     validator "^10.11.0"

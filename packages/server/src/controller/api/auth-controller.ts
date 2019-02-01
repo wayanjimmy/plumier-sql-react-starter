@@ -1,4 +1,4 @@
-import { authorize } from "@plumjs/core"
+import { authorize, route, HttpStatusError } from "@plumjs/core"
 import { val } from "@plumjs/plumier"
 import bcrypt from "bcrypt"
 import { UserClaim } from "core"
@@ -11,11 +11,13 @@ export class AuthController {
     private readonly userRepo = new UserRepository()
 
     @authorize.public()
+    @route.post()
     async login(@val.email() email: string, password: string) {
         const user = await this.userRepo.findByEmail(email)
-        const hash = await bcrypt.hash(password, 10)
-        if (user && user.password === hash) {
-            return sign(new UserClaim(user.id, user.role), config.jwtSecret)
+        if (user && await bcrypt.compare(password, user.password)) {
+            return { token: sign(<UserClaim>{ userId: user.id, role: user.role }, config.jwtSecret) }
         }
+        else
+            throw new HttpStatusError(403)
     }
 }
