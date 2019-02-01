@@ -8,6 +8,9 @@
     "scripts": {
         "kill": "kill-port 8000 3000",
         "clean": "ts-node scripts/cleanup.ts",
+        "upgrade:core": "ncu -a --packageFile ./packages/core/package.json",
+        "upgrade:server": "ncu -a --packageFile ./packages/server/package.json",
+        "upgrade:ui": "ncu -a --packageFile ./packages/ui/package.json",
         "build:core": "yarn workspace core build",
         "build:ui": "yarn workspace ui build",
         "build:server": "yarn workspace server build",
