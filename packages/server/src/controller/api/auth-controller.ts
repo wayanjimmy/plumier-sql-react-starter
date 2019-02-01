@@ -1,10 +1,11 @@
-import { val } from "@plumjs/plumier";
-import { Repository, UserRepository } from "../../repository/generic-repository";
-import { User, UserClaim } from "core";
+import { authorize } from "@plumjs/core"
+import { val } from "@plumjs/plumier"
 import bcrypt from "bcrypt"
+import { UserClaim } from "core"
 import { sign } from "jsonwebtoken"
-import { config } from "../../config";
-import { authorize } from "@plumjs/core";
+
+import { config } from "../../config"
+import { UserRepository } from "../../repository/generic-repository"
 
 export class AuthController {
     private readonly userRepo = new UserRepository()

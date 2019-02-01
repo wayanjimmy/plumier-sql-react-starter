@@ -1,4 +1,4 @@
-import { route } from "@plumjs/core"
+import { route, authorize } from "@plumjs/core"
 import { val } from "@plumjs/plumier"
 import { Todo } from "core"
 
@@ -7,6 +7,7 @@ import { Repository } from "../../repository/generic-repository"
 export class TodoController {
     private readonly repo = new Repository<Todo>("Todo")
 
+    @authorize.public()
     @route.get("")
     all(@val.optional() offset:number = 0, @val.optional() limit:number = 50) {
         return this.repo.find({ deleted: false }, offset, limit)

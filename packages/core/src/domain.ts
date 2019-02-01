@@ -1,6 +1,6 @@
 import { domain } from "@plumjs/core"
 import { val } from "@plumjs/validator"
-import reflect from "tinspector"
+import { unique } from "./business";
 
 /**
  * This is the super class for all domains. It has id, createdAt and deleted 
@@ -41,6 +41,7 @@ export type UserRole = "SuperAdmin" | "Admin" | "User";
 export class User extends DomainBase {
     constructor(
         @val.email()
+        @unique()
         public email: string,
         @val.length({ max: 64 })
         public displayName: string,
