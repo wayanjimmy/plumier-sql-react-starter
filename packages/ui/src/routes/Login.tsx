@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import { Container, Column, Title, Box, Field, Label, Control, Input, Icon } from "rbx";
 import { Mail, Key } from "react-feather";
 
-class Login extends Component<{}, { email: string; password: string }> {
+type Props = {
+    path: string;
+};
+
+type State = {
+    email: string;
+    password: string;
+};
+
+class Login extends Component<Props, State> {
     state = {
         email: "",
         password: ""
