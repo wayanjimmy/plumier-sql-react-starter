@@ -41,19 +41,22 @@ export type UserRole = "SuperAdmin" | "Admin" | "User";
 export class User extends DomainBase {
     constructor(
         @val.email()
-        email: string,
+        public email: string,
         @val.length({ max: 64 })
-        displayName: string,
-        password: string,
-        provider: "Local" | "Facebook" | "Google",
-        role: UserRole
+        public displayName: string,
+        @val.length({ max: 64 })
+        public password: string,
+        @val.length({ max: 10 })
+        public provider: "Local" | "Facebook" | "Google",
+        @val.length({ max: 10 })
+        public role: UserRole
     ) { super() }
 }
 
 @domain()
 export class UserClaim {
     constructor(
-        userId: string,
+        userId: number,
         role: UserRole
     ) { }
 }

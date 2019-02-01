@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { DomainBase } from "core";
+import { DomainBase, User } from "core";
 
 /**
  * This generic repository used to do CRUD for domain that 
@@ -37,5 +37,16 @@ export class Repository<T extends DomainBase> {
             return db(this.table).update(<DomainBase>{ deleted: true }).where({ id })
         else
             return db(this.table).delete().where({ id })
+    }
+}
+
+export class UserRepository extends Repository<User> {
+    constructor() {
+        super("User")
+    }
+
+    async findByEmail(email: string): Promise<User | undefined> {
+        return db(this.table).where({ email })
+            .first()
     }
 }

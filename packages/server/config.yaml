@@ -2,3 +2,4 @@
 
 # example : dbUri: "mysql://root:unique123@localhost/cool_db"
 dbUri: "mysql://root:password@localhost/todo"
+jwtSecret: "n3gWaps?GZx2PDgmNZd4btGxv86B9hnW9LSBAJpVMqweSCq79K35PK3P%4tc$*mQ+MnNBYfkEFR?6bnz^^4w43@3@NzAn7aRs&S3YqGG$U-%Aezz!4GAQfbM@3WpcqDP"
