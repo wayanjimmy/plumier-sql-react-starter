@@ -12,7 +12,7 @@
         "migrate:rollback": "knex migrate:rollback --knexfile knexfile.ts"
     },
     "dependencies": {
-        "@plumjs/plumier": "1.0.0-alpha.5",
+        "@plumjs/plumier": "1.0.0-alpha.6",
         "@types/bcrypt": "^3.0.0",
         "@types/jsonwebtoken": "^8.3.0",
         "@types/knex": "^0.15.1",

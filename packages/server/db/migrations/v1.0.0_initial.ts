@@ -11,15 +11,20 @@ export function baseTable(t: Knex.CreateTableBuilder, knex: Knex) {
 }
 
 export async function up(knex: Knex): Promise<any> {
-    return knex.schema
-        .createTable("Todo", t => {
-            baseTable(t, knex)
-            t.string("title", 64)
-            t.boolean("completed").defaultTo(false)
-        })
+    return knex.transaction(trx => {
+        return trx.schema
+            .createTable("Todo", t => {
+                baseTable(t, trx)
+                t.string("title", 64)
+                t.boolean("completed").defaultTo(false)
+            })
+    })
 };
 
 export async function down(knex: Knex): Promise<any> {
-    return knex.schema
-        .dropTable("Todo")
+    return knex.transaction(trx => {
+        return trx.schema
+            .dropTable("Todo")
+    })
+
 };

@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { DomainBase, User } from "core";
+import { DomainBase, User, Todo } from "core";
 
 /**
  * This generic repository used to do CRUD for domain that 
@@ -21,6 +21,7 @@ export class Repository<T extends DomainBase> {
             .orderBy("createdAt", "desc")
             .offset(offset)
             .limit(limit)
+
     }
 
     async add(data: Partial<T>): Promise<number> {
@@ -37,6 +38,18 @@ export class Repository<T extends DomainBase> {
             return db(this.table).update(<DomainBase>{ deleted: true }).where({ id })
         else
             return db(this.table).delete().where({ id })
+    }
+}
+
+export class TodoRepository extends Repository<Todo> {
+    constructor() { super("Todo") }
+
+    async findByUser(userId: number = 0, offset: number = 0, limit: number = 50):Promise<Todo[]> {
+        return db(this.table).where({ deleted: false })
+            .and.whereIn("visibility", userId ? ["Public", "Private"] : ["Public"])
+            .and.whereWrapped(x => x.whereNull("userId").orWhere({ userId }))
+            .offset(offset)
+            .limit(limit)
     }
 }
 
