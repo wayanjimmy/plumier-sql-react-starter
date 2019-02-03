@@ -1,4 +1,4 @@
-import { domain } from "@plumjs/core"
+import { domain, authorize } from "@plumjs/core"
 import { val } from "@plumjs/validator"
 import { uniqueEmail } from "./business";
 
@@ -15,10 +15,15 @@ import { uniqueEmail } from "./business";
 @domain()
 export class DomainBase {
     constructor(
+        @authorize.role("Machine")
         @val.optional()
         public id: number = 0,
+
+        @authorize.role("Machine")
         @val.optional()
         public createdAt: Date = new Date(),
+
+        @authorize.role("Machine")
         @val.optional()
         public deleted: boolean = false
     ) { }
@@ -30,12 +35,18 @@ export class Todo extends DomainBase {
     constructor(
         @val.length({ max: 64 })
         public title: string,
+
+        @val.length({ max: 10 })
+        public visibility: "Public" | "Private",
+
+        public userId?:number,
+
         @val.optional()
         public completed?: boolean
     ) { super() }
 }
 
-export type UserRole = "SuperAdmin" | "Admin" | "User";
+export type UserRole = "Admin" | "User";
 
 @domain()
 export class User extends DomainBase {
@@ -43,21 +54,27 @@ export class User extends DomainBase {
         @val.email()
         @uniqueEmail()
         public email: string,
+
         @val.length({ max: 64 })
         public displayName: string,
+
         @val.length({ max: 64 })
         public password: string,
+
+        @authorize.role("Machine")
         @val.length({ max: 10 })
         public provider: "Local" | "Facebook" | "Google",
+
+        @authorize.role("Admin")
         @val.length({ max: 10 })
         public role: UserRole
     ) { super() }
 }
 
 @domain()
-export class UserClaim {
+export class LoginUser {
     constructor(
-        userId: number,
-        role: UserRole
+        public userId: number,
+        public role: UserRole
     ) { }
 }

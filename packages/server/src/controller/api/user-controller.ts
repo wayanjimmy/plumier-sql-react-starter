@@ -10,7 +10,7 @@ export class UserController {
 
     @authorize.role("Admin", "SuperAdmin")
     @route.get("")
-    all(@val.optional() offset:number = 0, @val.optional() limit:number = 50) {
+    all(@val.optional() offset: number = 0, @val.optional() limit: number = 50) {
         return this.repo.find({ deleted: false }, offset, limit)
     }
 
@@ -22,17 +22,21 @@ export class UserController {
     @authorize.public()
     @route.post("")
     async save(data: User) {
-        data.password = await bcrypt.hash(data.password, 10)
-        return this.repo.add(data)
+        return this.repo.add({ 
+            ...data, 
+            password: await bcrypt.hash(data.password, 10),
+            provider: "Local",
+            role: "User"
+        })
     }
 
-    @authorize.role("SuperAdmin")
+    @authorize.role("Admin")
     @route.put(":id")
     update(id: number, @val.partial(User) data: Partial<User>) {
         return this.repo.update(id, data)
     }
 
-    @authorize.role("SuperAdmin")
+    @authorize.role("Admin")
     @route.delete(":id")
     delete(id: number) {
         return this.repo.delete(id)

@@ -1,16 +1,25 @@
-import { route, authorize } from "@plumjs/core"
+import { route, authorize, bind, HttpStatusError } from "@plumjs/core"
 import { val } from "@plumjs/plumier"
-import { Todo } from "core"
+import { Todo, LoginUser } from "core"
 
-import { Repository } from "../../repository/generic-repository"
+import { Repository, TodoRepository } from "../../repository/generic-repository"
 
 export class TodoController {
-    private readonly repo = new Repository<Todo>("Todo")
+    private readonly repo = new TodoRepository()
+
+    @route.ignore()
+    private async checkAccess(id:number, user:LoginUser){
+        //make sure user only can access their own todos 
+        //except super admin
+        const request = await this.repo.findById(id)
+        if(request && user.role === "User" && user.userId !== request.userId)
+            throw new HttpStatusError(401, "Unauthorized")
+    }
 
     @authorize.public()
     @route.get("")
-    all(@val.optional() offset:number = 0, @val.optional() limit:number = 50) {
-        return this.repo.find({ deleted: false }, offset, limit)
+    all( @val.optional() @bind.user() user?: LoginUser, @val.optional() offset: number = 0, @val.optional() limit: number = 50) {
+        return this.repo.findByUser(user && user.userId, offset, limit)
     }
 
     @route.get(":id")
@@ -19,17 +28,19 @@ export class TodoController {
     }
 
     @route.post("")
-    save(data: Todo) {
-        return this.repo.add(data)
+    save(data: Todo, @bind.user() user:LoginUser) {
+        return this.repo.add({...data, userId: user.userId})
     }
 
     @route.put(":id")
-    update(id: number, @val.partial(Todo) data: Partial<Todo>) {
+    async update(id: number, @val.partial(Todo) data: Partial<Todo>, @bind.user() user:LoginUser) {
+        this.checkAccess(id, user)
         return this.repo.update(id, data)
     }
 
     @route.delete(":id")
-    delete(id: number) {
+    delete(id: number, @bind.user() user:LoginUser) {
+        this.checkAccess(id, user)
         return this.repo.delete(id)
     }
 }
