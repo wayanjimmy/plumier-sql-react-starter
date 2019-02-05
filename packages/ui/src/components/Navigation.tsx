@@ -12,12 +12,10 @@ const Navigation: React.FC = () => (
             <Navbar.Segment align="end">
                 <Navbar.Item>
                     <Button.Group>
-                        <Button color="primary">
+                        <Button color="primary" onClick={() => navigate("/login")}>
                             <strong>Log in</strong>
                         </Button>
-                        <Button color="light" onClick={() => navigate("/login")}>
-                            Log out
-                        </Button>
+                        <Button color="light">Log out</Button>
                     </Button.Group>
                 </Navbar.Item>
             </Navbar.Segment>
