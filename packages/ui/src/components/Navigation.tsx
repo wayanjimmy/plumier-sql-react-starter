@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar, Button } from "rbx";
 import { navigate } from "@reach/router";
 
+import * as authUtil from "../auth";
+
 const Navigation: React.FC = () => (
     <Navbar>
         <Navbar.Brand>
@@ -11,12 +13,23 @@ const Navigation: React.FC = () => (
             <Navbar.Segment align="start" />
             <Navbar.Segment align="end">
                 <Navbar.Item>
-                    <Button.Group>
+                    {authUtil.isAuthenticated() ? (
+                        <Button
+                            color="light"
+                            onClick={() => {
+                                if (window.confirm("Are you sure want to logout?")) {
+                                    authUtil.forgetToken();
+                                    navigate("/login");
+                                }
+                            }}
+                        >
+                            Log out
+                        </Button>
+                    ) : (
                         <Button color="primary" onClick={() => navigate("/login")}>
                             <strong>Log in</strong>
                         </Button>
-                        <Button color="light">Log out</Button>
-                    </Button.Group>
+                    )}
                 </Navbar.Item>
             </Navbar.Segment>
         </Navbar.Menu>
