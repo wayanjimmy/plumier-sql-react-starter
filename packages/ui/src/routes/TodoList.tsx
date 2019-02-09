@@ -75,15 +75,17 @@ class TodoList extends Component<Props, State> {
                 <Column.Group centered>
                     <Column size="half">
                         <List>
-                            <List.Item>
-                                <Input
-                                    type="text"
-                                    value={title}
-                                    placeholder="Something todo? type here ..."
-                                    onChange={this.handleTitleChange}
-                                    onKeyPress={this.handleSaveTodo}
-                                />
-                            </List.Item>
+                            {authUtil.isAuthenticated() && (
+                                <List.Item>
+                                    <Input
+                                        type="text"
+                                        value={title}
+                                        placeholder="Something todo? type here ..."
+                                        onChange={this.handleTitleChange}
+                                        onKeyPress={this.handleSaveTodo}
+                                    />
+                                </List.Item>
+                            )}
                             {todos.map((todo: Todo) => (
                                 <List.Item key={todo.id}>
                                     <Checkbox checked={todo.completed} onChange={this.handleCheckTodo(todo)} />{" "}
