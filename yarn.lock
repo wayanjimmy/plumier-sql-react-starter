@@ -1809,6 +1809,14 @@ autoprefixer@^9.3.1:
     postcss "^7.0.14"
     postcss-value-parser "^3.3.1"
 
+avataaars@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/avataaars/-/avataaars-1.2.1.tgz#8e2e968dbd7f558876f1f18f56973e7aa47afbec"
+  integrity sha512-4MmcXx3EKGwkKqEtVRiKxM08MMib2KYC1o5DcotpLUVuoe5EkWNuhJVB2JAH753II4VzMK7fO2EA5rf5QirPQg==
+  dependencies:
+    lodash "^4.17.4"
+    prop-types "^15.6.0"
+
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -9062,7 +9070,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==

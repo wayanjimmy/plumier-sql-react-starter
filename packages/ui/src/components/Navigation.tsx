@@ -14,17 +14,25 @@ const Navigation: React.FC = () => (
             <Navbar.Segment align="end">
                 <Navbar.Item>
                     {authUtil.isAuthenticated() ? (
-                        <Button
-                            color="light"
-                            onClick={() => {
-                                if (window.confirm("Are you sure want to logout?")) {
-                                    authUtil.forgetToken();
-                                    navigate("/login");
-                                }
-                            }}
-                        >
-                            Log out
-                        </Button>
+                        <Button.Group>
+                            <Button color="light" onClick={() => navigate("/")}>
+                                Home
+                            </Button>
+                            <Button color="light" onClick={() => navigate("/users")}>
+                                Users
+                            </Button>
+                            <Button
+                                color="light"
+                                onClick={() => {
+                                    if (window.confirm("Are you sure want to logout?")) {
+                                        authUtil.forgetToken();
+                                        navigate("/login");
+                                    }
+                                }}
+                            >
+                                Log out
+                            </Button>
+                        </Button.Group>
                     ) : (
                         <Button color="primary" onClick={() => navigate("/login")}>
                             <strong>Log in</strong>

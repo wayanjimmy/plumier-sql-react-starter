@@ -9,6 +9,7 @@
     "@types/reach__router": "^1.2.3",
     "@types/react": "16.7.20",
     "@types/react-dom": "16.0.11",
+    "avataaars": "^1.2.1",
     "axios": "^0.18.0",
     "core": "^1.0.0",
     "rbx": "^2.0.4",
