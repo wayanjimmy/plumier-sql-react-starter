@@ -3,13 +3,13 @@ import { val } from "@plumjs/validator"
 import { uniqueEmail } from "./business";
 
 /**
- * This is the super class for all domains. It has id, createdAt and deleted 
- * this super class prevent us re-declaring those field on every domains. 
- * 
- * Refer to server/src/repository/generic-repository.ts for generic repository 
+ * This is the super class for all domains. It has id, createdAt and deleted
+ * this super class prevent us re-declaring those field on every domains.
+ *
+ * Refer to server/src/repository/generic-repository.ts for generic repository
  * that supports this DomainBase
- * 
- * Also refer to server/db/migrations/v1.0.0_initial.ts for migrating all domain 
+ *
+ * Also refer to server/db/migrations/v1.0.0_initial.ts for migrating all domain
  * with support DomainBase
  */
 @domain()
@@ -39,6 +39,7 @@ export class Todo extends DomainBase {
         @val.length({ max: 10 })
         public visibility: "Public" | "Private",
 
+        @authorize.role("Machine")
         public userId?:number,
 
         @val.optional()

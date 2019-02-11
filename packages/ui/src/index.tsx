@@ -2,8 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "rbx/index.css";
 
+import * as authUtil from "./auth";
 import Root from "./routes/Root";
 import * as serviceWorker from "./serviceWorker";
+
+authUtil.setDefaultHeaders();
 
 ReactDOM.render(<Root />, document.getElementById("root"));
 
