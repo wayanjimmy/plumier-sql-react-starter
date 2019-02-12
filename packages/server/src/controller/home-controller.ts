@@ -1,5 +1,4 @@
-import { route } from "@plumjs/core";
-import { response } from "@plumjs/plumier";
+import { response, route } from "plumier";
 import { join } from "path";
 
 export class HomeController {

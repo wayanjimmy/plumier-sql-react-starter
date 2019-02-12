@@ -1,6 +1,5 @@
-import { domain } from "@plumjs/core"
-import { val } from "@plumjs/validator"
-import reflect from "tinspector"
+import { domain } from "@plumier/core"
+import { val } from "@plumier/validator"
 
 /**
  * This is the super class for all domains. It has id, createdAt and deleted 
