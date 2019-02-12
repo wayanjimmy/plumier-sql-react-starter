@@ -1,5 +1,4 @@
-import { route } from "@plumjs/core"
-import { val } from "@plumjs/plumier"
+import { val, route } from "plumier"
 import { Todo } from "core"
 
 import { Repository } from "../../repository/generic-repository"
