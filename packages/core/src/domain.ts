@@ -39,6 +39,7 @@ export class Todo extends DomainBase {
         @val.length({ max: 10 })
         public visibility: "Public" | "Private",
 
+        @authorize.role("Machine")
         public userId?:number,
 
         @val.optional()
