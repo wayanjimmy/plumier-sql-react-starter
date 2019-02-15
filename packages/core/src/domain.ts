@@ -1,6 +1,6 @@
-import { domain, authorize } from "@plumjs/core"
-import { val } from "@plumjs/validator"
+import { domain, val } from "plumier"
 import { uniqueEmail } from "./business";
+import { authorize } from "@plumier/core";
 
 /**
  * This is the super class for all domains. It has id, createdAt and deleted 

@@ -1,4 +1,4 @@
-import Plumier, { JwtAuthFacility, ServeStaticFacility, WebApiFacility } from "@plumjs/plumier"
+import Plumier, { JwtAuthFacility, ServeStaticFacility, WebApiFacility } from "plumier"
 import logger from "koa-logger"
 import { join } from "path"
 
