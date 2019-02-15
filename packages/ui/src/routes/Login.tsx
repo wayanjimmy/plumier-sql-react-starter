@@ -1,8 +1,25 @@
 import React, { Component } from "react";
-import { Container, Column, Title, Box, Field, Label, Control, Input, Icon } from "rbx";
+import { Container, Column, Title, Box, Field, Label, Control, Input, Icon, Button } from "rbx";
 import { Mail, Key } from "react-feather";
+import axios from "axios";
+import { navigate } from "@reach/router";
 
-class Login extends Component<{}, { email: string; password: string }> {
+import * as authUtil from "../auth";
+
+type Props = {
+    path: string;
+};
+
+type State = {
+    email: string;
+    password: string;
+};
+
+interface TokenResponse {
+    token: string;
+}
+
+class Login extends Component<Props, State> {
     state = {
         email: "",
         password: ""
@@ -16,6 +33,16 @@ class Login extends Component<{}, { email: string; password: string }> {
         this.setState({ password: e.currentTarget.value });
     };
 
+    handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+        e.preventDefault();
+        try {
+            let { email, password } = this.state;
+            let res = await axios.post<TokenResponse>("/api/auth/login", { email, password });
+            authUtil.storeToken(res.data.token);
+            navigate("/");
+        } catch (_error) {}
+    };
+
     render() {
         return (
             <Container>
@@ -23,7 +50,7 @@ class Login extends Component<{}, { email: string; password: string }> {
                     <Title size={3}>Login</Title>
                     <Title subtitle>Please login to proceed.</Title>
                     <Box>
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <Field>
                                 <Label>Email</Label>
                                 <Control iconLeft>
@@ -50,6 +77,11 @@ class Login extends Component<{}, { email: string; password: string }> {
                                     <Icon size="small" align="left">
                                         <Key size={12} />
                                     </Icon>
+                                </Control>
+                            </Field>
+                            <Field>
+                                <Control>
+                                    <Button color="success">Login</Button>
                                 </Control>
                             </Field>
                         </form>
