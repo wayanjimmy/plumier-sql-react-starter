@@ -1,8 +1,9 @@
 import { Config } from "knex"
 import { config } from "./src/config";
 
-const development: Config = {
-    client: 'mysql2',
+export const defaultConfiguration: Config = {
+    //TODO: change value based on database driver you used
+    //client: 'mysql2',
     connection: config.dbUri,
     pool: {
         min: 2,
@@ -18,6 +19,6 @@ const development: Config = {
 }
 
 module.exports = {
-    development,
-    production: { ...development }
+    development: { ...defaultConfiguration },
+    production: { ...defaultConfiguration }
 }
