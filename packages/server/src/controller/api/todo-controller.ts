@@ -1,5 +1,5 @@
-import { route, authorize, bind, HttpStatusError } from "@plumjs/core"
-import { val } from "@plumjs/plumier"
+import { route, val, bind, HttpStatusError } from "plumier"
+import { authorize,  } from "@plumier/core"
 import { Todo, LoginUser } from "core"
 
 import { Repository, TodoRepository } from "../../repository/generic-repository"

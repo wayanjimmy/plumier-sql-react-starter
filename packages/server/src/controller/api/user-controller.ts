@@ -1,5 +1,5 @@
-import { route, authorize } from "@plumjs/core"
-import { val } from "@plumjs/plumier"
+import { route, authorize } from "@plumier/core"
+import { val } from "plumier"
 import { User } from "core"
 import bcrypt from "bcrypt"
 
