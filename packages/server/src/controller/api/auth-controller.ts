@@ -1,8 +1,7 @@
-import { authorize } from "@plumier/core"
 import bcrypt from "bcrypt"
 import { LoginUser } from "core"
 import { sign } from "jsonwebtoken"
-import { HttpStatusError, route, val } from "plumier"
+import { authorize, HttpStatusError, route, val } from "plumier"
 
 import { config } from "../../config"
 import { UserRepository } from "../../repository/generic-repository"

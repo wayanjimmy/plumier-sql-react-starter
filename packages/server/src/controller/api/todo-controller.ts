@@ -1,8 +1,7 @@
-import { route, val, bind, HttpStatusError } from "plumier"
-import { authorize,  } from "@plumier/core"
-import { Todo, LoginUser } from "core"
+import { LoginUser, Todo } from "core"
+import { authorize, bind, HttpStatusError, route, val } from "plumier"
 
-import { Repository, TodoRepository } from "../../repository/generic-repository";
+import { TodoRepository } from "../../repository/generic-repository"
 
 export class TodoController {
     private readonly repo = new TodoRepository();

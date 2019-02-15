@@ -8,8 +8,8 @@
         "postbuild": "ts-node scripts/postbuild.ts"
     },
     "dependencies": {
-        "@plumier/core": "1.0.0-beta.0",
-        "@plumier/validator": "1.0.0-beta.0"
+        "@plumier/core": "1.0.0-beta.2",
+        "@plumier/validator": "1.0.0-beta.2"
     },
     "devDependencies": {
         "ts-node": "^8.0.2",

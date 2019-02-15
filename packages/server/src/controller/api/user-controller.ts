@@ -1,7 +1,6 @@
-import { route, authorize } from "@plumier/core"
-import { val } from "plumier"
-import { User } from "core"
 import bcrypt from "bcrypt"
+import { User } from "core"
+import { authorize, route, val } from "plumier"
 
 import { Repository } from "../../repository/generic-repository"
 

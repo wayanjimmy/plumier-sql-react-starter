@@ -1,5 +1,6 @@
-import { UserRepository } from "../repository/generic-repository";
-import { ValidatorStore } from "@plumier/core";
+import { ValidatorStore } from "plumier"
+
+import { UserRepository } from "../repository/generic-repository"
 
 export const validatorStore: ValidatorStore = {
     "val:unique-email": async val => {
