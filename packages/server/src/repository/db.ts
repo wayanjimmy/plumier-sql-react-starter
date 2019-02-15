@@ -1,4 +1,4 @@
 import knex from "knex"
-import { config } from "../config";
+import { defaultConfiguration } from "../../knexfile";
 
-export const db = knex({ client: "mysql2", connection: config.dbUri })
+export const db = knex(defaultConfiguration)
