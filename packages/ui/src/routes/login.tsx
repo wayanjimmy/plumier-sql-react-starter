@@ -8,7 +8,8 @@ import {
     Control,
     Input,
     Icon,
-    Button
+    Button,
+    Notification
 } from "rbx";
 import axios from "axios";
 import React, { Component } from "react";
@@ -24,6 +25,7 @@ type Props = {
 type State = {
     email: string;
     password: string;
+    errors: string;
 };
 
 interface TokenResponse {
@@ -33,15 +35,16 @@ interface TokenResponse {
 class Login extends Component<Props, State> {
     state = {
         email: "",
-        password: ""
+        password: "",
+        errors: ""
     };
 
     handleEmailChange = (e: React.FormEvent<HTMLInputElement>): void => {
-        this.setState({ email: e.currentTarget.value });
+        this.setState({ email: e.currentTarget.value, errors: "" });
     };
 
     handlePasswordChange = (e: React.FormEvent<HTMLInputElement>): void => {
-        this.setState({ password: e.currentTarget.value });
+        this.setState({ password: e.currentTarget.value, errors: "" });
     };
 
     handleSubmit = async (
@@ -56,16 +59,25 @@ class Login extends Component<Props, State> {
             });
             authUtil.storeToken(res.data.token);
             navigate("/");
-        } catch (_error) {}
+        } catch (error) {
+            if (error.response.status === 403) {
+                this.setState({ errors: error.response.data });
+            }
+        }
     };
 
     render() {
+        let { errors } = this.state;
+
         return (
             <Container>
                 <Column size={4} offset={4}>
                     <Title size={3}>Login</Title>
                     <Title subtitle>Please login to proceed.</Title>
                     <Box>
+                        {errors !== "" && (
+                            <Notification color="danger">{errors}</Notification>
+                        )}
                         <form onSubmit={this.handleSubmit}>
                             <Field>
                                 <Label>Email</Label>

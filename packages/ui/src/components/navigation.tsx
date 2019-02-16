@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Button } from "rbx";
+import { Navbar, Button} from "rbx";
 import { navigate } from "@reach/router";
 
 import * as authUtil from "../auth";
