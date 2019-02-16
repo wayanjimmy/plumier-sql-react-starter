@@ -54,7 +54,12 @@ class TodoList extends Component<Props, State> {
         }
     };
 
-    handleCheckTodo = (todo: Todo) => (e: React.FormEvent<HTMLInputElement>): void => {
+    handleCheckTodo = (todo: Todo) => (
+        e: React.FormEvent<HTMLInputElement>
+    ): void => {
+        axios.put(`/api/todo/${todo.id}`, {
+            completed: !!e.currentTarget.checked ? 1 : 0
+        });
         let todos = this.state.todos.map((t: Todo) => {
             if (t.id === todo.id) {
                 return {
@@ -88,7 +93,10 @@ class TodoList extends Component<Props, State> {
                             )}
                             {todos.map((todo: Todo) => (
                                 <List.Item key={todo.id}>
-                                    <Checkbox checked={todo.completed} onChange={this.handleCheckTodo(todo)} />{" "}
+                                    <Checkbox
+                                        checked={todo.completed}
+                                        onChange={this.handleCheckTodo(todo)}
+                                    />{" "}
                                     {todo.title}
                                 </List.Item>
                             ))}
