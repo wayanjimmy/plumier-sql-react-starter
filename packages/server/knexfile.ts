@@ -3,7 +3,7 @@ import { config } from "./src/config";
 
 export const defaultConfiguration: Config = {
     //TODO: change value based on database driver you used
-    //client: 'mysql2',
+    client: 'mysql2',
     connection: config.dbUri,
     pool: {
         min: 2,
@@ -17,8 +17,5 @@ export const defaultConfiguration: Config = {
         directory: "./db/seeds"
     }
 }
-
-module.exports = {
-    development: { ...defaultConfiguration },
-    production: { ...defaultConfiguration }
-}
+export const development: Config = { ...defaultConfiguration }
+export const production: Config = { ...defaultConfiguration }

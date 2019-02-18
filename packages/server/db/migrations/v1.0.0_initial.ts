@@ -26,5 +26,4 @@ export async function down(knex: Knex): Promise<any> {
         return trx.schema
             .dropTable("Todo")
     })
-
 };
