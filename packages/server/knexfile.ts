@@ -17,8 +17,5 @@ export const defaultConfiguration: Config = {
         directory: "./db/seeds"
     }
 }
-
-module.exports = {
-    development: { ...defaultConfiguration },
-    production: { ...defaultConfiguration }
-}
+export const development: Config = { ...defaultConfiguration }
+export const production: Config = { ...defaultConfiguration }
