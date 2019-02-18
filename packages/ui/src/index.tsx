@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "rbx/index.css";
 
 import * as authUtil from "./auth";
-import Root from "./routes/Root";
-import * as serviceWorker from "./serviceWorker";
+import Root from "./routes/root";
+import * as serviceWorker from "./service-worker";
 
 authUtil.setDefaultHeaders();
 

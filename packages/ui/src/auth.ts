@@ -10,6 +10,8 @@ export function storeToken(token: string): void {
 
 export function forgetToken(): void {
     localStorage.setItem(LOCAL_STORAGE_KEY, "");
+
+    axios.defaults.headers.common["Authorization"] = "";
 }
 
 export function getToken(): string {

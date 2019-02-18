@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 
-import TodoList from "./TodoList";
-import UserList from "./UserList";
-import Login from "./Login";
+import TodoList from "./todo-list";
+import UserList from "./user-list";
+import Login from "./login";
 
 class Root extends Component {
     render() {
