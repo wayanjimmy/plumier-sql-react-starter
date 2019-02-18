@@ -4,7 +4,7 @@ import { Todo } from "core";
 import axios from "axios";
 
 import * as authUtil from "../auth";
-import Layout from "../components/Layout";
+import Layout from "../components/layout";
 
 type Props = {
     path: string;
@@ -54,7 +54,12 @@ class TodoList extends Component<Props, State> {
         }
     };
 
-    handleCheckTodo = (todo: Todo) => (e: React.FormEvent<HTMLInputElement>): void => {
+    handleCheckTodo = (todo: Todo) => (
+        e: React.FormEvent<HTMLInputElement>
+    ): void => {
+        axios.put(`/api/todo/${todo.id}`, {
+            completed: !!e.currentTarget.checked ? 1 : 0
+        });
         let todos = this.state.todos.map((t: Todo) => {
             if (t.id === todo.id) {
                 return {
@@ -74,25 +79,32 @@ class TodoList extends Component<Props, State> {
             <Layout>
                 <Column.Group centered>
                     <Column size="half">
-                        <List>
-                            {authUtil.isAuthenticated() && (
-                                <List.Item>
-                                    <Input
-                                        type="text"
-                                        value={title}
-                                        placeholder="Something todo? type here ..."
-                                        onChange={this.handleTitleChange}
-                                        onKeyPress={this.handleSaveTodo}
-                                    />
-                                </List.Item>
-                            )}
-                            {todos.map((todo: Todo) => (
-                                <List.Item key={todo.id}>
-                                    <Checkbox checked={todo.completed} onChange={this.handleCheckTodo(todo)} />{" "}
-                                    {todo.title}
-                                </List.Item>
-                            ))}
-                        </List>
+                        <div style={{ padding: "3rem" }}>
+                            <List>
+                                {authUtil.isAuthenticated() && (
+                                    <List.Item>
+                                        <Input
+                                            type="text"
+                                            value={title}
+                                            placeholder="Something todo? type here ..."
+                                            onChange={this.handleTitleChange}
+                                            onKeyPress={this.handleSaveTodo}
+                                        />
+                                    </List.Item>
+                                )}
+                                {todos.map((todo: Todo) => (
+                                    <List.Item key={todo.id}>
+                                        <Checkbox
+                                            checked={todo.completed}
+                                            onChange={this.handleCheckTodo(
+                                                todo
+                                            )}
+                                        />{" "}
+                                        {todo.title}
+                                    </List.Item>
+                                ))}
+                            </List>
+                        </div>
                     </Column>
                 </Column.Group>
             </Layout>

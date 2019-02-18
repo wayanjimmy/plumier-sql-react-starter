@@ -1,7 +1,19 @@
-import React, { Component } from "react";
-import { Container, Column, Title, Box, Field, Label, Control, Input, Icon, Button } from "rbx";
-import { Mail, Key } from "react-feather";
+import {
+    Container,
+    Column,
+    Title,
+    Box,
+    Field,
+    Label,
+    Control,
+    Input,
+    Icon,
+    Button,
+    Notification
+} from "rbx";
 import axios from "axios";
+import React, { Component } from "react";
+import { Mail, Key } from "react-feather";
 import { navigate } from "@reach/router";
 
 import * as authUtil from "../auth";
@@ -13,6 +25,7 @@ type Props = {
 type State = {
     email: string;
     password: string;
+    errors: string;
 };
 
 interface TokenResponse {
@@ -22,34 +35,49 @@ interface TokenResponse {
 class Login extends Component<Props, State> {
     state = {
         email: "",
-        password: ""
+        password: "",
+        errors: ""
     };
 
     handleEmailChange = (e: React.FormEvent<HTMLInputElement>): void => {
-        this.setState({ email: e.currentTarget.value });
+        this.setState({ email: e.currentTarget.value, errors: "" });
     };
 
     handlePasswordChange = (e: React.FormEvent<HTMLInputElement>): void => {
-        this.setState({ password: e.currentTarget.value });
+        this.setState({ password: e.currentTarget.value, errors: "" });
     };
 
-    handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    handleSubmit = async (
+        e: React.FormEvent<HTMLFormElement>
+    ): Promise<void> => {
         e.preventDefault();
         try {
             let { email, password } = this.state;
-            let res = await axios.post<TokenResponse>("/api/auth/login", { email, password });
+            let res = await axios.post<TokenResponse>("/api/auth/login", {
+                email,
+                password
+            });
             authUtil.storeToken(res.data.token);
             navigate("/");
-        } catch (_error) {}
+        } catch (error) {
+            if (error.response.status === 403) {
+                this.setState({ errors: error.response.data });
+            }
+        }
     };
 
     render() {
+        let { errors } = this.state;
+
         return (
             <Container>
                 <Column size={4} offset={4}>
                     <Title size={3}>Login</Title>
                     <Title subtitle>Please login to proceed.</Title>
                     <Box>
+                        {errors !== "" && (
+                            <Notification color="danger">{errors}</Notification>
+                        )}
                         <form onSubmit={this.handleSubmit}>
                             <Field>
                                 <Label>Email</Label>
@@ -81,6 +109,20 @@ class Login extends Component<Props, State> {
                             </Field>
                             <Field>
                                 <Control>
+                                    <Button
+                                        color="danger"
+                                        type="button"
+                                        onClick={(
+                                            e: React.MouseEvent<
+                                                HTMLButtonElement
+                                            >
+                                        ) => {
+                                            e.preventDefault();
+                                            navigate("/");
+                                        }}
+                                    >
+                                        Cancel
+                                    </Button>{" "}
                                     <Button color="success">Login</Button>
                                 </Control>
                             </Field>
