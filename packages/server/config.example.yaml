@@ -1,5 +1,4 @@
-
-# server port
+# server port, if you change port value on development you need to change proxy port on the UI package.json
 port: 8000
 # example : dbUri: "mysql://root:unique123@localhost/cool_db"
 dbUri: "mysql://<user>:<password>@<server>/<db>"

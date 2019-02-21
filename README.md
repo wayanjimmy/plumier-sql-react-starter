@@ -10,6 +10,7 @@ This starter project contains basic monorepo setup using yarn workspace.
 * [Download](https://codeload.github.com/ktutnik/plumier-sql-react-starter/zip/master) this repo extract to any directory you like
 * Open VSCode then open the directory
 * Open VSCode integrated terminal
+* Rename `config.example.yaml` inside server project file into `config.yaml` and change database uri appropriately
 * `$ yarn install` 
 * `$ yarn start` 
 
