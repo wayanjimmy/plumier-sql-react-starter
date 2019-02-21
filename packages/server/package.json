@@ -8,6 +8,7 @@
         "prebuild": "ts-node scripts/prebuild.ts",
         "postbuild": "ts-node scripts/postbuild.ts",
         "build": "tsc -p tsconfig.build.json",
+        "knex": "knex --knexfile knexfile.ts",
         "migrate:latest": "knex migrate:latest --knexfile knexfile.ts",
         "migrate:rollback": "knex migrate:rollback --knexfile knexfile.ts"
     },

@@ -30,6 +30,16 @@ The server project (`packages/server`) is a minimal Plumier project. It also hos
 # Commands
 The root package.json contains predefined scripts for convenient. Some command uses typescript code that stays on `scripts` directory and executed using `ts-node` 
 
+### Run Project Specific Command
+To run project specific command you can use [workspace](https://yarnpkg.com/lang/en/docs/cli/workspace/) command, such as:
+
+```bash
+# install package to specific project
+$ yarn workspace <project name> add <package name>
+# execute project specific script
+$ yarn workspace <project name> <script name>
+```
+
 ### Start
 This command used to start both UI and Server. Server will be ran in debug mode `--inspect` and debugger will listen to port 9229. Refer to [Debugging](#debugging) for more info about debugging the project
 
@@ -66,14 +76,22 @@ To run the command simply
 $ yarn build
 ```
 
-### Run Project Specific Command
-To run project specific command you can use [workspace](https://yarnpkg.com/lang/en/docs/cli/workspace/) command, such as:
+### Generate Controller
+This command generate controller based on provided model name
+
+To run the command simply
+
+
+### Knex
+This command is shortcut to knex command line app installed in server project, all knex parameter will work
+
+To run the command simply
 
 ```bash
-# install package to specific project
-$ yarn workspace <project name> add <package name>
-# execute project specific script
-$ yarn workspace <project name> <script name>
+# migrate to latest
+$ yarn knex migrate:latest
+# rollback
+$ yarn knex migrate:rollback
 ```
 
 # Debugging
