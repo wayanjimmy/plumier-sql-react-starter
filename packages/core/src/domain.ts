@@ -1,4 +1,4 @@
-import { domain, val } from "plumier";
+import { domain, val } from "plumier"
 import { uniqueEmail } from "./business";
 import { authorize } from "@plumier/core";
 

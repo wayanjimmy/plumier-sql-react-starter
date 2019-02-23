@@ -1,7 +1,7 @@
 import Plumier, {
+    JwtAuthFacility,
     ServeStaticFacility,
-    WebApiFacility,
-    JwtAuthFacility
+    WebApiFacility
 } from "plumier";
 import logger from "koa-logger";
 import { join } from "path";

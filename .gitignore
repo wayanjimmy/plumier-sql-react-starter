@@ -2,8 +2,5 @@ build
 node_modules
 yarn-error.log
 .DS_Store
-<<<<<<< HEAD
 *.http
-=======
 yarn.lock
->>>>>>> master
