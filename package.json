@@ -19,7 +19,8 @@
         "start:ui": "yarn workspace ui start",
         "start:server": "yarn workspace server start",
         "start": "concurrently \"yarn start:ui\" \"yarn start:server\"",
-        "gen:controller": "ts-node scripts/generate-controller.ts"
+        "gen:controller": "ts-node scripts/generate-controller.ts",
+        "knex": "yarn workspace server knex"
     },
     "devDependencies": {
         "@types/del": "^3.0.1",

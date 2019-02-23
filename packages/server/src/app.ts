@@ -1,9 +1,13 @@
-import Plumier, { JwtAuthFacility, ServeStaticFacility, WebApiFacility } from "plumier"
-import logger from "koa-logger"
-import { join } from "path"
+import Plumier, {
+    JwtAuthFacility,
+    ServeStaticFacility,
+    WebApiFacility
+} from "plumier";
+import logger from "koa-logger";
+import { join } from "path";
 
-import { validatorStore } from "./business/validator"
-import { config } from "./config"
+import { validatorStore } from "./business/validator";
+import { config } from "./config";
 
 export default function createApp() {
     return new Plumier()
@@ -11,5 +15,5 @@ export default function createApp() {
         .set(new WebApiFacility({ validators: validatorStore }))
         .set(new ServeStaticFacility({ root: join(__dirname, "../public") }))
         .set(new JwtAuthFacility({ secret: config.jwtSecret }))
-        .initialize()
+        .initialize();
 }

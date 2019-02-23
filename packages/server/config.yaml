@@ -1,0 +1,2 @@
+dbUri: "mysql://root:qwe123@localhost/plumier_todolist"
+jwtSecret: "iamsorandom"
