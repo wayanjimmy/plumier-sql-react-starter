@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Button} from "rbx";
+import { Navbar, Button } from "rbx";
 import { navigate } from "@reach/router";
 
 import * as authUtil from "../auth";
@@ -18,13 +18,20 @@ const Navigation: React.FC = () => (
                             <Button color="light" onClick={() => navigate("/")}>
                                 Home
                             </Button>
-                            <Button color="light" onClick={() => navigate("/users")}>
+                            <Button
+                                color="light"
+                                onClick={() => navigate("/users")}
+                            >
                                 Users
                             </Button>
                             <Button
                                 color="light"
                                 onClick={() => {
-                                    if (window.confirm("Are you sure want to logout?")) {
+                                    if (
+                                        window.confirm(
+                                            "Are you sure want to logout?"
+                                        )
+                                    ) {
                                         authUtil.forgetToken();
                                         navigate("/login");
                                     }
@@ -34,7 +41,10 @@ const Navigation: React.FC = () => (
                             </Button>
                         </Button.Group>
                     ) : (
-                        <Button color="primary" onClick={() => navigate("/login")}>
+                        <Button
+                            color="primary"
+                            onClick={() => navigate("/login")}
+                        >
                             <strong>Log in</strong>
                         </Button>
                     )}
