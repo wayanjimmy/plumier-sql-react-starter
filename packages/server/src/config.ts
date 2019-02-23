@@ -6,6 +6,7 @@ import { join } from "path";
  * This class provide type safety for configuration (packages/server/config.yaml)
  */
 export interface Config {
+    port:number
     dbUri:string
 }
 
