@@ -8,8 +8,8 @@
         "postbuild": "ts-node scripts/postbuild.ts"
     },
     "dependencies": {
-        "@plumjs/core": "1.0.0-alpha.6",
-        "@plumjs/validator": "1.0.0-alpha.6"
+        "@plumier/core": "1.0.0-beta.2",
+        "@plumier/validator": "1.0.0-beta.2"
     },
     "devDependencies": {
         "ts-node": "^8.0.2",

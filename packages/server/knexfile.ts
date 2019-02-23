@@ -1,7 +1,8 @@
 import { Config } from "knex"
 import { config } from "./src/config";
 
-const development: Config = {
+export const defaultConfiguration: Config = {
+    //TODO: change value based on database driver you used
     client: 'mysql2',
     connection: config.dbUri,
     pool: {
@@ -16,8 +17,6 @@ const development: Config = {
         directory: "./db/seeds"
     }
 }
+export const development: Config = { ...defaultConfiguration }
+export const production: Config = { ...defaultConfiguration }
 
-module.exports = {
-    development,
-    production: { ...development }
-}

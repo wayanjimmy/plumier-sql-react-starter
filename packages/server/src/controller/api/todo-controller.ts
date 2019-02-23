@@ -1,8 +1,7 @@
-import { route, authorize, bind, HttpStatusError } from "@plumjs/core";
-import { val } from "@plumjs/plumier";
-import { Todo, LoginUser } from "core";
+import { LoginUser, Todo } from "core";
+import { authorize, bind, HttpStatusError, route, val } from "plumier";
 
-import { Repository, TodoRepository } from "../../repository/generic-repository";
+import { TodoRepository } from "../../repository/generic-repository";
 
 export class TodoController {
     private readonly repo = new TodoRepository();
@@ -37,7 +36,11 @@ export class TodoController {
     }
 
     @route.put(":id")
-    async update(id: number, @val.partial(Todo) data: Partial<Todo>, @bind.user() user: LoginUser) {
+    async update(
+        id: number,
+        @val.partial(Todo) data: Partial<Todo>,
+        @bind.user() user: LoginUser
+    ) {
         this.checkAccess(id, user);
         return this.repo.update(id, data);
     }

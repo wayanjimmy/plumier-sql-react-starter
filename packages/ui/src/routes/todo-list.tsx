@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Column, List, Checkbox, Input } from "rbx";
+import { Column, List, Checkbox, Input, Message } from "rbx";
 import { Todo } from "core";
 import axios from "axios";
 
@@ -103,6 +103,13 @@ class TodoList extends Component<Props, State> {
                                         {todo.title}
                                     </List.Item>
                                 ))}
+                                {todos.length === 0 && (
+                                    <Message color="white">
+                                        <Message.Body>
+                                            Nothing todo
+                                        </Message.Body>
+                                    </Message>
+                                )}
                             </List>
                         </div>
                     </Column>
