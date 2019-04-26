@@ -5,6 +5,10 @@
     "workspaces": [
         "packages/*"
     ],
+    "engines": {
+        "node": "12.0.0",
+        "yarn": "1.13.0"
+    },
     "scripts": {
         "kill": "kill-port 8000 3000",
         "clean": "ts-node scripts/cleanup.ts",
