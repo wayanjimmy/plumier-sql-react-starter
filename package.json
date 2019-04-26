@@ -20,7 +20,8 @@
         "start:server": "yarn workspace server start",
         "start": "concurrently \"yarn start:ui\" \"yarn start:server\"",
         "gen:controller": "ts-node scripts/generate-controller.ts",
-        "knex": "yarn workspace server knex"
+        "knex": "yarn workspace server knex",
+        "heroku-postbuild": "yarn build"
     },
     "devDependencies": {
         "@types/del": "^3.0.1",
